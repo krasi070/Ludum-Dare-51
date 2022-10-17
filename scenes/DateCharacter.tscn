@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/DateCharacter.gd" type="Script" id=1]
+[ext_resource path="res://sprites/pictures/pictures.png" type="Texture" id=2]
+[ext_resource path="res://sprites/pictures/emotion_hints.png" type="Texture" id=3]
+[ext_resource path="res://sprites/characters/arson_character.png" type="Texture" id=4]
+[ext_resource path="res://sprites/ui/bubble.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=5]
+resource_name = "appear"
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -480, -330 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "bubble_loop"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -480, -335 ), Vector2( -480, -345 ), Vector2( -480, -335 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fade_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+
+[sub_resource type="Animation" id=2]
+resource_name = "strike_area_loop"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("StrikeArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 70, 145 ), Vector2( 70, 155 ), Vector2( 70, 145 ) ]
+}
+
+[node name="DateCharacter" type="Node2D"]
+script = ExtResource( 1 )
+interest_threshold = 20
+starting_interest_level = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+hframes = 2
+vframes = 2
+
+[node name="PictureBubble" type="Node2D" parent="."]
+position = Vector2( -480, -330 )
+
+[node name="Sprite" type="Sprite" parent="PictureBubble"]
+rotation = 0.139626
+texture = ExtResource( 7 )
+
+[node name="PictureSprite" type="Sprite" parent="PictureBubble"]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+hframes = 6
+vframes = 6
+frame = 26
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PictureBubble/PictureSprite"]
+anims/appear = SubResource( 5 )
+
+[node name="EmotionHintSprite" type="Sprite" parent="PictureBubble"]
+position = Vector2( -200, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PictureBubble"]
+anims/RESET = SubResource( 3 )
+anims/bubble_loop = SubResource( 4 )
+anims/fade_out = SubResource( 6 )
+
+[node name="StrikeArea" type="Node2D" parent="."]
+position = Vector2( 70, 145 )
+
+[node name="Sprite1" type="Sprite" parent="StrikeArea"]
+position = Vector2( -200, 0 )
+texture = ExtResource( 3 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="Sprite2" type="Sprite" parent="StrikeArea"]
+texture = ExtResource( 3 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="Sprite3" type="Sprite" parent="StrikeArea"]
+position = Vector2( 200, 0 )
+texture = ExtResource( 3 )
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StrikeArea"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 1 )
+anims/strike_area_loop = SubResource( 2 )
+
+[node name="EmotionEffect" type="Node2D" parent="."]
+
+[node name="PositionOne" type="Position2D" parent="EmotionEffect"]
+position = Vector2( 0, -400 )
+
+[node name="PositionTwo" type="Position2D" parent="EmotionEffect"]
+position = Vector2( 250, -300 )
+
+[node name="PositionThree" type="Position2D" parent="EmotionEffect"]
+position = Vector2( 300, -100 )

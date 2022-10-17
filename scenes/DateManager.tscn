@@ -1,0 +1,179 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/DateCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/characters/arson_character.png" type="Texture" id=2]
+[ext_resource path="res://scripts/DateManager.gd" type="Script" id=3]
+[ext_resource path="res://sprites/characters/theif_character.png" type="Texture" id=4]
+[ext_resource path="res://sprites/characters/guard_character.png" type="Texture" id=5]
+[ext_resource path="res://sprites/characters/drug_character.png" type="Texture" id=6]
+[ext_resource path="res://sprites/characters/vandalism_character.png" type="Texture" id=7]
+
+[node name="DateManager" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Coppo" parent="." instance=ExtResource( 1 )]
+character_spritesheet = ExtResource( 5 )
+character_name = "Coppo"
+interest_threshold = 30
+starting_interest_level = 0
+like_increase_rate = 4
+meh_increase_rate = 2
+dislike_decrease_rate = 0
+hate_decrease_rate = 3
+emotion_frames = {
+"dislike": 0,
+"hate": 3,
+"like": 1,
+"meh": 2
+}
+game_over_top_message = "After 6 months of solitary confinement"
+game_over_letter_message = "Never thought Coppo would actually
+do that to you... Sorry, for signing you
+up for this speed dating thing in the
+first place.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your dear friend,
+Garbage Man"
+
+[node name="Ember" parent="." instance=ExtResource( 1 )]
+character_spritesheet = ExtResource( 2 )
+character_name = "Ember"
+interest_threshold = 30
+starting_interest_level = 5
+like_increase_rate = 4
+meh_increase_rate = 2
+dislike_decrease_rate = 2
+hate_decrease_rate = 3
+emotion_frames = {
+"dislike": 2,
+"hate": 1,
+"like": 3,
+"meh": 0
+}
+game_over_top_message = "After a visit to the hospital"
+game_over_letter_message = "I know those burn scars over your whole
+body look but look on the bright side.
+You managed to survive!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your dear friend,
+Garbage Man"
+
+[node name="Robbin" parent="." instance=ExtResource( 1 )]
+character_spritesheet = ExtResource( 4 )
+character_name = "Robbin"
+interest_threshold = 30
+starting_interest_level = 10
+like_increase_rate = 4
+dislike_decrease_rate = 2
+hate_decrease_rate = 3
+emotion_frames = {
+"dislike": 1,
+"hate": 2,
+"like": 3,
+"meh": 0
+}
+game_over_top_message = "After a few days"
+game_over_letter_message = "What Robbin did to you I would've never
+expected. I mean, to steal a man's night
+time cuddle plushie is just too far...
+
+I heard you wimping all night and all day
+these past few days. Fret not lil' bud I'll
+get you a new plushie!
+
+
+
+
+
+
+
+
+
+
+
+Your dear friend,
+Garbage Man"
+
+[node name="Stoney" parent="." instance=ExtResource( 1 )]
+character_spritesheet = ExtResource( 6 )
+character_name = "Stoney"
+interest_threshold = 30
+starting_interest_level = 8
+like_increase_rate = 5
+meh_increase_rate = 3
+emotion_frames = {
+"dislike": 0,
+"hate": 2,
+"like": 3,
+"meh": 1
+}
+game_over_top_message = "After an unknown amount of time"
+game_over_letter_message = "You okay lil' bud? I don't know what
+Stoney slipped in your food but you
+were out cold for days.
+
+So... Any cool hallucinations?
+
+
+
+
+
+
+
+
+
+
+
+
+
+Your dear friend,
+Garbage Man"
+
+[node name="Vandal" parent="." instance=ExtResource( 1 )]
+character_spritesheet = ExtResource( 7 )
+character_name = "Vandal"
+interest_threshold = 30
+starting_interest_level = 0
+like_increase_rate = 6
+meh_increase_rate = 3
+hate_decrease_rate = 6
+emotion_frames = {
+"dislike": 2,
+"hate": 3,
+"like": 1,
+"meh": 0
+}
+game_over_top_message = "The following day"
+game_over_letter_message = "Thankfully Vandal is a sweatheart on the
+inside. He only sucker punched you once
+and that was it, can you believe it!
+
+Too bad you got booted off Timmy's
+speed dating thing. But who cares it
+was dumb anyways."

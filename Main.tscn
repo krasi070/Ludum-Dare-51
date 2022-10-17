@@ -1,0 +1,295 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://scenes/PictureSelector.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/DateManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/TitleScreenSelector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/TitleScreenMenu.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Transition.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/ui/title.png" type="Texture" id=6]
+[ext_resource path="res://scripts/NewDayScreen.gd" type="Script" id=7]
+[ext_resource path="res://scenes/DateTimer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sprites/environment/chair.png" type="Texture" id=9]
+[ext_resource path="res://fonts/Bromine.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://fonts/5yearsoldfont.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://sprites/environment/menu_bg.png" type="Texture" id=12]
+[ext_resource path="res://sprites/environment/date_background.png" type="Texture" id=13]
+[ext_resource path="res://sprites/environment/hands_table.png" type="Texture" id=14]
+[ext_resource path="res://sprites/ui/paper_sheet.png" type="Texture" id=15]
+[ext_resource path="res://scenes/ChooseDateUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/DateEndings.tscn" type="PackedScene" id=17]
+[ext_resource path="res://sprites/ui/bar.png" type="Texture" id=18]
+[ext_resource path="res://sprites/environment/nameplate.png" type="Texture" id=19]
+
+[sub_resource type="DynamicFont" id=7]
+size = 48
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_size = 5
+outline_color = Color( 0.921569, 0.909804, 0.909804, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 54
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 60
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 26
+font_data = ExtResource( 10 )
+
+[node name="Main" type="Node2D"]
+
+[node name="DateBackground" type="Sprite" parent="."]
+visible = false
+position = Vector2( 960, 540 )
+texture = ExtResource( 13 )
+
+[node name="ChairSprite" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 9 )
+
+[node name="DateManager" parent="." instance=ExtResource( 2 )]
+position = Vector2( 960, 540 )
+
+[node name="TableSprite" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 14 )
+
+[node name="NameplateSprite" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 19 )
+
+[node name="NameLabel" type="Label" parent="NameplateSprite"]
+margin_left = 256.0
+margin_top = 166.0
+margin_right = 441.0
+margin_bottom = 280.0
+rect_rotation = 6.0
+custom_colors/font_color = Color( 0.164706, 0.180392, 0.184314, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Ember"
+align = 1
+valign = 1
+
+[node name="PictureSelector" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1039, 890 )
+
+[node name="DateTimer" parent="." instance=ExtResource( 8 )]
+
+[node name="NewDayBackground" type="Sprite" parent="."]
+visible = false
+position = Vector2( 960, 540 )
+texture = ExtResource( 12 )
+script = ExtResource( 7 )
+
+[node name="NewDayUI" type="Node2D" parent="NewDayBackground"]
+visible = false
+
+[node name="TopMessageLabel" type="Label" parent="NewDayBackground/NewDayUI"]
+margin_left = -558.0
+margin_top = -462.0
+margin_right = 565.0
+margin_bottom = -402.0
+custom_colors/font_color = Color( 0, 0.00392157, 0.00392157, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "After 6 months of solitary confinement"
+align = 1
+valign = 1
+
+[node name="PaperTextureRect" type="TextureRect" parent="NewDayBackground/NewDayUI"]
+margin_left = -854.0
+margin_top = -445.0
+margin_right = 1066.0
+margin_bottom = 635.0
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="LetterTextLabel" type="Label" parent="NewDayBackground/NewDayUI/PaperTextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 720.0
+margin_top = 140.0
+margin_right = -340.0
+margin_bottom = -160.0
+rect_rotation = 1.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -20
+custom_fonts/font = SubResource( 3 )
+text = "I told you they wouldn't like it if you 
+wasted their time.
+
+Thankfully Vandal is a sweatheart on the
+inside. He only sucker punched you once
+and that was it, could you believe it!
+
+Too bad you got booted off Timmy's
+speed dating thing. But who cares it
+was dumb anyways.
+
+
+
+
+
+
+
+
+
+
+
+Your dear friend,
+Garbage Man"
+
+[node name="BarSprite" type="Sprite" parent="NewDayBackground/NewDayUI"]
+position = Vector2( 0, 420 )
+scale = Vector2( 1, 0.7 )
+texture = ExtResource( 18 )
+
+[node name="CallToActionLabel" type="Label" parent="NewDayBackground/NewDayUI/BarSprite"]
+margin_left = -460.0
+margin_top = -57.0
+margin_right = 431.0
+margin_bottom = 74.0
+rect_scale = Vector2( 1, 1.33 )
+custom_colors/font_color = Color( 0.207843, 0.14902, 0.294118, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "PRESS SPACE TO DATE"
+align = 1
+valign = 1
+
+[node name="TitleScreenUI" type="Node2D" parent="NewDayBackground"]
+visible = false
+script = ExtResource( 4 )
+rules_page_one_text = "Psst! Did you hear about that speed
+dating thing Timmy is organizing?
+Well... I signed you up!
+Don't get mad, I just thought you needed
+a special someone in your life behind
+bars. Just heed these rules and you'll
+succeed! And survive...
+
+(1) Only 10s per day with each particpant
+
+(2) Do not ignore them, be sure to talk
+
+(3) Do not anger them, even if you don't
+     like them"
+rules_page_two_text = "(4) If you survive to the end, pick the one
+     who likes you most. They won't allow
+     you to pick anyone else...
+
+(5) Remember what they talk about,
+     that's how you'll get to know them
+
+(6) And remember to have fun!
+
+
+
+
+Your dear friend,
+Garbage Man"
+quit_text = "Are you bailing out my man...
+
+Take me with you!"
+
+[node name="TitleTextureRect" type="TextureRect" parent="NewDayBackground/TitleScreenUI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -969.0
+margin_top = -501.0
+margin_right = 951.0
+margin_bottom = 579.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="CreditsTextureRect" type="TextureRect" parent="NewDayBackground/TitleScreenUI/TitleTextureRect"]
+margin_left = 1974.0
+margin_top = 196.0
+margin_right = 2986.0
+margin_bottom = 586.0
+rect_scale = Vector2( 1.75, 2 )
+texture = ExtResource( 18 )
+
+[node name="CreditsLabel" type="Label" parent="NewDayBackground/TitleScreenUI/TitleTextureRect/CreditsTextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 165.714
+margin_top = 133.0
+margin_right = 62.7141
+margin_bottom = -79.0
+custom_colors/font_color = Color( 0.239216, 0.184314, 0.321569, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Made by
+krasi0707 &"
+
+[node name="PoopieName" type="Label" parent="NewDayBackground/TitleScreenUI/TitleTextureRect/CreditsTextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 166.0
+margin_top = 262.0
+margin_right = 63.0
+margin_bottom = -73.0
+custom_colors/font_color = Color( 0.239216, 0.184314, 0.321569, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "poopie her royal majesty the bringer of death and chaos"
+
+[node name="PaperTextureRect" type="TextureRect" parent="NewDayBackground/TitleScreenUI"]
+margin_left = -800.0
+margin_top = -563.0
+margin_right = 1120.0
+margin_bottom = 517.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 15 )
+
+[node name="LetterTextLabel" type="Label" parent="NewDayBackground/TitleScreenUI/PaperTextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 720.0
+margin_top = 140.0
+margin_right = -340.0
+margin_bottom = -160.0
+rect_rotation = 1.5
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "(4) If you survive to the end, pick the one
+     who likes you most. They won't allow
+     you to pick anyone else...
+
+(5) Remember what they talk about,
+     that's how you'll get to know them
+
+(6) And remember to have fun!
+
+
+
+
+Your dear friend,
+Garbage Guy
+"
+
+[node name="TitleScreenSelector" parent="NewDayBackground/TitleScreenUI" instance=ExtResource( 3 )]
+position = Vector2( 0, 290 )
+
+[node name="ChooseDateUI" parent="NewDayBackground" instance=ExtResource( 16 )]
+
+[node name="DateEndings" parent="." instance=ExtResource( 17 )]
+visible = false
+
+[node name="Transition" parent="." instance=ExtResource( 5 )]
+visible = false
